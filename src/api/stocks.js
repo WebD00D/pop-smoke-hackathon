@@ -19,9 +19,9 @@ export const fetchStocksByTag = tagName => {
       return response.json();
     })
     .then(data => {
-      // TODO: filter on ytdChange property. With largest absolute values.
-
-      return data; // return top 3.
+      // filter on ytdChange property. With largest absolute values.
+      const transformed = data.sort((a, b) => (Math.abs(a.ytdChange) > Math.abs(b.ytdChange)) ? -1 : 1)
+      return transformed.slice(0,5); // return top 5.
     });
 };
 
